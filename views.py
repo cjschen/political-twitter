@@ -1,8 +1,12 @@
-import subprocess
-from bottle import run, post, request, response, get, route
+from flask import Flask, render_template
+import json, random
+app = Flask(__name__)
 
-@route('/<path>',method = 'POST')
-def process(path):
-    return subprocess.check_output(['python',path+'.py'],shell=True)
 
-run(host='localhost', port=8080, debug=True)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+ 
+if __name__ == "__main__":
+    app.run(debug=True)
